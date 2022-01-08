@@ -8,6 +8,7 @@ import UserList from '../src/components/user-list.components'
 import AddOrUpdate from '../src/components/addorupdate-users.components'
 import UserListPublic from "../src/components/user-list-public.components"
 import ShowProduct from "../src/components/show-product.components"
+import ShowCart from "../src/components/show-cart.components"
 import './App.css';
 
 
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/product_public" element={<ProductListPublic />}></Route>
           <Route path="/" element={<UserListPublic />}></Route>
           <Route path="/showproduct/:params" element={<ShowProduct />}></Route>
+          <Route path="/showcart" element={<ShowCart />}></Route>
         </Routes>
       </div>
     </div>

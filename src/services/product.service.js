@@ -57,5 +57,21 @@ class ProductDataService {
     delete_user(id) {
         return axios.delete(`${INSTRUCTOR_API_URL}/delete/user/${id}`,{headers});
     }
+
+    retrive_cart(id) {
+        return axios.get(`${INSTRUCTOR_API_URL}/cart/${id}`, {headers})
+    }
+
+    create_cart(data) {
+        return axios.post(`${INSTRUCTOR_API_URL}/create/cart`, data, {headers});
+    }
+
+    update_cart(id,data) {
+        return axios.put(`${INSTRUCTOR_API_URL}/upload/cart/${id}`, data, {headers});
+    }
+
+    delete_cart(id) {
+        return axios.delete(`${INSTRUCTOR_API_URL}/delete/cart/${id}`,{headers});
+    }
 }
 export default new ProductDataService();

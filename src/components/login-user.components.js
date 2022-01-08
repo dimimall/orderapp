@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Routes, Route, Link, useParams} from "react-router-dom"
+import { Routes, Route, Link, useParams} from "react-router-dom";
+import {store, useGlobalState} from 'state-pool';
 import ProductDataService from "../services/product.service";
+
 
 function LoginUser(){
 
@@ -8,7 +10,10 @@ function LoginUser(){
 
     const [name , setName] = useState('');
     const [role, setRole] = useState('');
+    const [userId, setUserId] = useState('');
     const [product, setProduct] = useState('');
+
+    window.$user = params.users;
 
     function checkUserRole(role){
         if (role === "admin")
@@ -25,6 +30,7 @@ function LoginUser(){
         .then(response => {
             setName(response.data.name)
             setRole(response.data.role)
+            setUserId(response.data.id)
 
             if (response.data.role) {
                 setProduct(checkUserRole(response.data.role))

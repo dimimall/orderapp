@@ -7,7 +7,8 @@ function ShowProduct(){
     
     const [itemName , setItemName] = useState('');
     const [productPrice, setProductPrice] = useState('');
-
+    const [quantity, setQuantity] = useState('');
+    const [userId, setUserId] = useState('');
 
     function getProductFromId() {
         ProductDataService.retrive(params.params)
@@ -19,6 +20,19 @@ function ShowProduct(){
 
     getProductFromId()
 
+    function addToCart(e) {
+        let product = {
+            quantity: document.getElementById('quantity').value,
+            productName: itemName,
+            productPrice: productPrice,
+            productId: params.params,
+            userId: window.$user
+        }
+        ProductDataService.create_cart(product)
+        .then(() => {alert('Add product')})
+
+        e.preventDefault();
+    }
 
     return (
         <div>
@@ -26,9 +40,19 @@ function ShowProduct(){
             <div className="container">
             <center>
                 <div class="d-flex flex-column-reverse bd-highlight mb-3">
+                    <div class="p-2 bd-highlight">Product id {params.params}</div>
                     <div class="p-2 bd-highlight">Product name {itemName}</div>
                     <div class="p-2 bd-highlight">Product Price {productPrice}</div>
                 </div>
+                <div class="row justify-content-center">
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="text" class="form-control" id="quantity" defaultValue={0} onInput={e => setQuantity(e.target.value)}/>
+                    <br></br>
+                    <button type="button" class="btn btn-primary" onClick={e => addToCart(e)}>Add</button>
+                </div>
+                </div>
+                <Link to={`/showcart`} className="btn btn-primary">Show your cart</Link>
              </center>
             </div>
         </div> 
