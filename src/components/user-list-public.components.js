@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Routes, Route, Link} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
-
+// Users list for login
 class UserListPublic extends Component {
     constructor(props) {
         super(props)
@@ -18,6 +18,7 @@ class UserListPublic extends Component {
         this.refreshUsers()
     }
 
+    // function get all users
     refreshUsers() {
         ProductDataService.getAllUsers()
         .then(
@@ -28,6 +29,7 @@ class UserListPublic extends Component {
         )
     }
 
+    // create html table to display all users
     render() {
         return (
             <div className="container">

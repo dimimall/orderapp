@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Routes, Route, Link, useParams} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
+
+// update or add user component 
 function AddOrUpdateUser(){
 
     const params = useParams()
@@ -10,6 +12,7 @@ function AddOrUpdateUser(){
     const [role, setRole] = useState('');
 
 
+    // function get user by id if exist 
     function getUserFromId() {
         ProductDataService.retrive_user(params.users)
         .then(response => {
@@ -18,6 +21,7 @@ function AddOrUpdateUser(){
         })
     }
 
+    // function submit for update user if exist or add user if not exist
     function onSubmit(e) {
         if (params.users == -1) {
             console.log("passsss "+params.users)
@@ -43,6 +47,7 @@ function AddOrUpdateUser(){
 
     getUserFromId();
 
+    // create html form to update or add user
     return (
         <div>
             <h3>User</h3>

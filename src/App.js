@@ -1,3 +1,4 @@
+//add all modules and components (pages) to Link and route between pages
 import React, { Component } from "react";
 import { Routes, Route, Link} from "react-router-dom"
 import ProductList from '../src/components/product-list.component'
@@ -18,6 +19,7 @@ class App extends Component {
   }
 
   render() {
+    //navigation bar
     return (
       <div className="container">
         <ul>

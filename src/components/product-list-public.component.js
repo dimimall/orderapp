@@ -3,6 +3,8 @@ import { Routes, Route, Link} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
 
+// product list vivsible in all users
+// users can choose and see details of each product
 class ProductListPublic extends Component {
     constructor(props) {
         super(props)
@@ -18,6 +20,7 @@ class ProductListPublic extends Component {
         this.refreshProducts()
     }
 
+    // get all products via get products api
     refreshProducts() {
         ProductDataService.getAll()
         .then(
@@ -29,6 +32,7 @@ class ProductListPublic extends Component {
     }
 
 
+    // return all products and Html table to display these
     render() {
         return (
             <div className="container">
@@ -52,6 +56,7 @@ class ProductListPublic extends Component {
                                     <td>{product.id}</td>
                                     <td>{product.itemName}</td>
                                     <td>{product.productPrice}</td>
+                                    {/* show each product */}
                                     <td><Link to={`/showproduct/${product.id}`} className="btn btn-primary">Show Product</Link></td>
                                    </tr>
                                )

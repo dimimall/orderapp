@@ -3,6 +3,8 @@ import { Routes, Route, Link} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
 
+// products list component only admin can see this page.
+// admin can add update and delete product by Id
 class ProductList extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +14,9 @@ class ProductList extends Component {
             message: null
         }
         this.refreshProducts = this.refreshProducts.bind(this)
+        // delete product
         this.deleteProductClicked = this.deleteProductClicked.bind(this)
+        // update product
         this.updateProductClicked = this.updateProductClicked.bind(this)
     }
 
@@ -20,6 +24,7 @@ class ProductList extends Component {
         this.refreshProducts()
     }
 
+    // fuction get all product from get product api
     refreshProducts() {
         ProductDataService.getAll()
         .then(
@@ -30,6 +35,7 @@ class ProductList extends Component {
         )
     }
 
+    // function delete product by Id via delete product api 
     deleteProductClicked(id) {
         ProductDataService.delete(id)
             .then(
@@ -45,6 +51,7 @@ class ProductList extends Component {
         console.log('update ' + id)
     }
 
+    // return all products in Html table 
     render() {
         return (
             <div className="container">
@@ -77,6 +84,7 @@ class ProductList extends Component {
                         </tbody>
                         <tfoot>
                             <tr> 
+                                {/* add product button Link and go to users list Link button */}
                                 <td><Link to={`/-1`} className="btn btn-primary">Add Product</Link></td>
                                 <td><Link to={`/user_list`} className="btn btn-primary">Go To Users</Link></td>
                             </tr>

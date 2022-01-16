@@ -2,14 +2,17 @@ import { useState } from 'react';
 import { Routes, Route, Link, useParams} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
+// show each product details
 function ShowProduct(){
     const params = useParams()
     
+    // create properties of product model 
     const [itemName , setItemName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [quantity, setQuantity] = useState('');
     const [userId, setUserId] = useState('');
 
+    // get product by Id from get api
     function getProductFromId() {
         ProductDataService.retrive(params.params)
         .then(response => {
@@ -20,6 +23,7 @@ function ShowProduct(){
 
     getProductFromId()
 
+    // function add product to cart
     function addToCart(e) {
         let product = {
             quantity: document.getElementById('quantity').value,
@@ -28,12 +32,14 @@ function ShowProduct(){
             productId: params.params,
             userId: window.$user
         }
+        // add product to cart table database via post api
         ProductDataService.create_cart(product)
         .then(() => {alert('Add product')})
 
         e.preventDefault();
     }
 
+    // display product details and add quantity of product text field 
     return (
         <div>
             <h1 className="text-center">Product</h1>

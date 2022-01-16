@@ -3,10 +3,12 @@ import { Link, useParams} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
 
+// show cart component
 function ShowCart(){    
     const [cart , setCart] = useState([]);
 
 
+    // function get cart by Id user from get api
     function getCartByUserId(){
         ProductDataService.retrive_cart(window.$user)
         .then(response => {
@@ -18,6 +20,7 @@ function ShowCart(){
     getCartByUserId()
 
 
+    // return all products of cart user
     return (
         <div className="container">
             <h3>Your Cart</h3>

@@ -3,14 +3,19 @@ import { Routes, Route, Link, useParams} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 import ProductList from './product-list.component';
 
+
+// add product component
 function AddProduct(){
 
+    // get params
     const params = useParams()
 
+    // product properties
     const [itemName , setItemName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     
 
+    // check if product exist in database and get product if exist via get product api
     function getProductFromId() {
         if (params.params == -1) {
             return
@@ -30,6 +35,7 @@ function AddProduct(){
         e.preventDefault();
     }
 
+    // check if exist then update product else add product to database
     function onSubmit(e) {
         if (params.params == -1) {
             console.log("passsss "+params.params)
@@ -55,6 +61,7 @@ function AddProduct(){
 
     getProductFromId();
 
+    // create form to update or add product
         return (
             <div>
                 <h3>Product</h3>

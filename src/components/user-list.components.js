@@ -3,6 +3,7 @@ import { Routes, Route, Link} from "react-router-dom"
 import ProductDataService from "../services/product.service";
 
 
+// user list component from users get api
 class UserList extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +13,9 @@ class UserList extends Component {
             message: null
         }
         this.refreshUsers= this.refreshUsers.bind(this)
+        //update user only admin
         this.updateUserClicked = this.updateUserClicked.bind(this)
+        // delete user only admin
         this.deleteUserClicked = this.deleteUserClicked.bind(this)
     }
 
@@ -20,6 +23,7 @@ class UserList extends Component {
         this.refreshUsers()
     }
 
+    // get all users function
     refreshUsers() {
         ProductDataService.getAllUsers()
         .then(
@@ -30,6 +34,7 @@ class UserList extends Component {
         )
     }
 
+    // function delete user by Id from delete api 
     deleteUserClicked(id) {
         ProductDataService.delete_user(id)
             .then(
@@ -45,6 +50,7 @@ class UserList extends Component {
         console.log('update ' + id)
     }
 
+    // create html table with users
     render() {
         return (
             <div className="container">
@@ -79,6 +85,7 @@ class UserList extends Component {
                         </tbody>
                         <tfoot>
                             <tr> 
+                                {/* Link to add user page */}
                                 <td><Link to={`/addorupdate/-1`} className="btn btn-primary">Add User</Link></td>
                             </tr>
                         </tfoot>
